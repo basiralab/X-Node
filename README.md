@@ -1,8 +1,13 @@
-# XNode: Graph Neural Network Reasoning with Language Model Explanations
+# X-Node: Self Explanation is All We Need
 
 ## Overview
 
-XNode is a framework for explainable graph neural networks that combines topological feature analysis with language model-based explanations. The system uses Grok API to generate human-readable explanations of graph topological features and their relationship to node classification.
+XNode is a framework for explainable graph neural networks that combines topological feature analysis with language model-based explanations. The system uses Grok API to generate human-readable explanations of graph topological features and their relationship to node classification. 
+
+#### (Accepted in GRAIL 2025, MICCAI 2025 Conference)
+
+## Architecture
+<img width="621" height="380" alt="image" src="https://github.com/user-attachments/assets/32af3c8e-abdf-4943-9747-484408a4b439" />
 
 ## Project Structure
 
@@ -105,6 +110,8 @@ Results are saved in the `results/` directory with:
 - t-SNE visualizations
 - Explanation outputs
 - Model checkpoints
+<img width="582" height="232" alt="image" src="https://github.com/user-attachments/assets/5bd391d7-7e26-4445-af35-96885dc4bac8" />
+
 
 ## Configuration
 
