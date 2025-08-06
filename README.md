@@ -125,9 +125,9 @@ export GROQ_API_KEY="your_api_key_here"
 If you use this code in your research, please cite:
 ```
 @article{xnode2024,
-  title={XNode: Explainable Graph Neural Networks with Language Model Reasoning},
-  author={Your Name},
+  title={X-Node: Self-Explanation is all we need},
+  author={Prajit Sengupta, Islem Rekik},
   journal={arXiv preprint},
-  year={2024}
+  year={2025}
 }
 ``` 
