@@ -4,7 +4,7 @@
 
 XNode is a framework for explainable graph neural networks that combines topological feature analysis with language model-based explanations. The system uses Grok API to generate human-readable explanations of graph topological features and their relationship to node classification. 
 
-#### (Accepted in GRAIL 2025, MICCAI 2025 Conference)
+#### (Accepted in GRAIL, MICCAI 2025 Conference)
 
 ## Architecture
 <img width="621" height="380" alt="image" src="https://github.com/user-attachments/assets/32af3c8e-abdf-4943-9747-484408a4b439" />
