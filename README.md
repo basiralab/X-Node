@@ -38,6 +38,16 @@ XNode/
 pip install -r requirements.txt
 ```
 
+## Datasets
+### MedMNIST
+A lightweight benchmark for biomedical image classification, covering organ, tissue, and blood datasets.
+
+- **Homepage:** [https://medmnist.com/](https://medmnist.com/)
+- **Install via pip:**
+```bash
+  pip install medmnist
+```
+
 ## Usage
 
 ### 1. Data Processing
