@@ -42,7 +42,7 @@ def load_trained_model(model_path, model_type, in_channels, hidden_channels, out
 
 
 def generate_node_explanations(model, data, G, topological_features, explanation_generator, 
-                              device, num_nodes=50):
+                              device, num_nodes=50, offline: bool = False):
     """
     Generate explanations for selected nodes.
     
@@ -100,31 +100,63 @@ def generate_node_explanations(model, data, G, topological_features, explanation
         confidence = conf_scores[test_indices == node_idx][0]
         
         # 1. Topological explanation
-        topological_explanation = explanation_generator.generate_topological_explanation(
-            node_features=data.x[node_idx].cpu().numpy(),
-            topological_features=topological_features,
-            node_idx=int(node_idx),
-            prediction=int(prediction),
-            true_label=int(true_label),
-            confidence=float(confidence)
-        )
+        if offline:
+            topological_explanation = (
+                f"Node {int(node_idx)} predicted {int(prediction)} (true {int(true_label)}, conf {float(confidence):.2f}). "
+                f"Degree={topological_features['degrees'][node_idx]:.2f}, "
+                f"Clustering={topological_features['clustering'][node_idx]:.2f}, "
+                f"TwoHopAgree={topological_features['two_hop_agreement'][node_idx]:.2f}. "
+                f"These structural cues likely influenced the classifier via neighborhood similarity."
+            )
+        else:
+            topological_explanation = explanation_generator.generate_topological_explanation(
+                node_features=data.x[node_idx].cpu().numpy(),
+                topological_features=topological_features,
+                node_idx=int(node_idx),
+                prediction=int(prediction),
+                true_label=int(true_label),
+                confidence=float(confidence)
+            )
         node_explanations['topological_explanation'] = topological_explanation
         
         # 2. Feature importance explanation
         feature_importance = explanations[node_idx].cpu().numpy()
-        feature_importance_explanation = explanation_generator.generate_feature_importance_explanation(
-            topological_features=topological_features,
-            feature_importance=feature_importance,
-            node_idx=int(node_idx)
-        )
+        if offline:
+            order = np.argsort(feature_importance)[::-1]
+            top_k = min(3, len(order))
+            order = order[:top_k]
+            # If explanation vector aligns with 6 topology features, name them; otherwise generic names
+            if len(feature_importance) == 6:
+                names = ['Degree','Clustering','TwoHop','EigenCentrality','DegreeCentrality','AvgEdgeWeight']
+                labels = [f"{names[i]}({float(feature_importance[i]):.2f})" for i in order]
+            else:
+                labels = [f"feat_{int(i)}({float(feature_importance[i]):.2f})" for i in order]
+            top_str = ', '.join(labels)
+            feature_importance_explanation = (
+                f"Top contributing features: {top_str}. These correlate with local density and agreement patterns."
+            )
+        else:
+            feature_importance_explanation = explanation_generator.generate_feature_importance_explanation(
+                topological_features=topological_features,
+                feature_importance=feature_importance,
+                node_idx=int(node_idx)
+            )
         node_explanations['feature_importance_explanation'] = feature_importance_explanation
         
         # 3. Neighborhood explanation
-        neighborhood_explanation = explanation_generator.generate_neighborhood_explanation(
-            G=G,
-            node_idx=int(node_idx),
-            topological_features=topological_features
-        )
+        if offline:
+            neighbors = list(G.neighbors(int(node_idx)))
+            avg_w = float(np.mean([G.edges[int(node_idx), n]['weight'] for n in neighbors])) if neighbors else 0.0
+            neighborhood_explanation = (
+                f"Neighborhood size={len(neighbors)}, avg edge weight={avg_w:.2f}. "
+                f"Local structure suggests class similarity via shared neighbors."
+            )
+        else:
+            neighborhood_explanation = explanation_generator.generate_neighborhood_explanation(
+                G=G,
+                node_idx=int(node_idx),
+                topological_features=topological_features
+            )
         node_explanations['neighborhood_explanation'] = neighborhood_explanation
         
         explanations_dict[str(node_idx)] = {
@@ -138,7 +170,7 @@ def generate_node_explanations(model, data, G, topological_features, explanation
     return explanations_dict
 
 
-def generate_global_explanation(G, topological_features, explanation_generator, predictions):
+def generate_global_explanation(G, topological_features, explanation_generator, predictions, offline: bool = False):
     """
     Generate global explanation for the entire graph.
     
@@ -151,11 +183,23 @@ def generate_global_explanation(G, topological_features, explanation_generator, 
     Returns:
         str: Global explanation
     """
-    global_explanation = explanation_generator.generate_global_pattern_explanation(
-        G=G,
-        topological_features=topological_features,
-        class_predictions=predictions
-    )
+    if offline:
+        import networkx as nx
+        avg_deg = float(np.mean(topological_features['degrees']))
+        avg_clust = float(np.mean(topological_features['clustering']))
+        density = nx.density(G)
+        unique, counts = np.unique(predictions, return_counts=True)
+        dist = {int(k): int(v) for k, v in zip(unique, counts)}
+        global_explanation = (
+            f"Graph density={density:.3f}, avg degree={avg_deg:.2f}, avg clustering={avg_clust:.2f}. "
+            f"Predicted class distribution={dist}. Topology indicates clusters with moderate agreement."
+        )
+    else:
+        global_explanation = explanation_generator.generate_global_pattern_explanation(
+            G=G,
+            topological_features=topological_features,
+            class_predictions=predictions
+        )
     
     return global_explanation
 
@@ -175,10 +219,12 @@ def main():
                        help='Output directory for explanations')
     parser.add_argument('--num_nodes', type=int, default=50,
                        help='Number of nodes to explain')
-    parser.add_argument('--api_key', type=str, required=True,
-                       help='Grok API key')
+    parser.add_argument('--api_key', type=str, required=False,
+                        help='Grok API key (not required in --offline mode)')
     parser.add_argument('--seed', type=int, default=42,
                        help='Random seed')
+    parser.add_argument('--offline', action='store_true',
+                        help='Run without calling Groq API; produce lightweight local explanations')
     
     args = parser.parse_args()
     
@@ -210,7 +256,13 @@ def main():
     )
     
     # Initialize explanation generator
-    explanation_generator = ExplanationGenerator(args.api_key)
+    if args.offline:
+        print("Offline mode: generating lightweight local explanations without API calls.")
+        explanation_generator = None
+    else:
+        if not args.api_key:
+            raise SystemExit("Error: --api_key is required unless --offline is set.")
+        explanation_generator = ExplanationGenerator(args.api_key)
     
     # Compute topological features
     from utils.graph_utils import compute_topological_features
@@ -219,7 +271,7 @@ def main():
     # Generate node explanations
     node_explanations = generate_node_explanations(
         model, data, G, topological_features, explanation_generator,
-        device, args.num_nodes
+        device, args.num_nodes, offline=args.offline
     )
     
     # Generate global explanation
@@ -230,7 +282,7 @@ def main():
         predictions = out.argmax(dim=1).cpu().numpy()
     
     global_explanation = generate_global_explanation(
-        G, topological_features, explanation_generator, predictions
+        G, topological_features, explanation_generator, predictions, offline=args.offline
     )
     
     # Create output directory

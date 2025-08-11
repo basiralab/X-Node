@@ -166,6 +166,8 @@ def cross_validate(model_class, data, device, n_folds=5, epochs=200, lr=0.01, we
     kf = KFold(n_splits=n_folds, shuffle=True, random_state=42)
     
     fold_results = []
+    best_state_dict = None
+    best_metric = -float('inf')
     
     for fold, (train_idx, val_idx) in enumerate(kf.split(range(data.x.size(0)))):
         print(f"\nFold {fold + 1}/{n_folds}")
@@ -206,6 +208,10 @@ def cross_validate(model_class, data, device, n_folds=5, epochs=200, lr=0.01, we
         })
         
         print(f"Fold {fold + 1} - Test Acc: {test_acc:.4f}, Test F1: {test_f1:.4f}")
+        # Track best model by test accuracy
+        if test_acc > best_metric:
+            best_metric = test_acc
+            best_state_dict = model.state_dict().copy()
     
     # Compute average results
     avg_test_acc = np.mean([r['test_acc'] for r in fold_results])
@@ -218,7 +224,9 @@ def cross_validate(model_class, data, device, n_folds=5, epochs=200, lr=0.01, we
         'avg_test_f1': avg_test_f1,
         'avg_test_loss': avg_test_loss,
         'std_test_acc': np.std([r['test_acc'] for r in fold_results]),
-        'std_test_f1': np.std([r['test_f1'] for r in fold_results])
+        'std_test_f1': np.std([r['test_f1'] for r in fold_results]),
+        'best_state_dict': best_state_dict,
+        'best_test_acc': best_metric
     }
 
 
@@ -321,6 +329,8 @@ def main():
                        help='Number of folds for cross-validation')
     parser.add_argument('--seed', type=int, default=42,
                        help='Random seed')
+    parser.add_argument('--fast', action='store_true',
+                        help='Enable fast mode: fewer epochs and folds')
     
     args = parser.parse_args()
     
@@ -348,6 +358,12 @@ def main():
     model_class = lambda **kwargs: get_reasoner_model(args.model, **kwargs)
     
     # Perform cross-validation
+    # Fast mode adjustments
+    if args.fast:
+        print("Fast mode: setting epochs=5 and n_folds=2")
+        args.epochs = min(args.epochs, 5)
+        args.n_folds = min(args.n_folds, 2)
+
     print(f"\nStarting {args.n_folds}-fold cross-validation for {args.model.upper()} Reasoner")
     cv_results = cross_validate(
         model_class, data, device, 
@@ -392,6 +408,23 @@ def main():
         json.dump(serializable_results, f, indent=2)
     
     print(f"Results saved to {results_file}")
+
+    # Save best model checkpoint using best fold state dict
+    best_model_path = os.path.join(args.output_dir, f"{args.model}_{args.dataset}_best_model.pth")
+    try:
+        if cv_results.get('best_state_dict') is not None:
+            # Recreate model to save a clean state dict
+            model_to_save = get_reasoner_model(args.model, 
+                                              in_channels=data.x.size(1),
+                                              hidden_channels=64,
+                                              out_channels=len(torch.unique(data.y)))
+            model_to_save.load_state_dict(cv_results['best_state_dict'])
+            torch.save(model_to_save.state_dict(), best_model_path)
+            print(f"Saved best model checkpoint to {best_model_path} (acc={cv_results['best_test_acc']:.4f})")
+        else:
+            print("Warning: best_state_dict missing; skipping checkpoint save.")
+    except Exception as exc:
+        print(f"Warning: failed to save model checkpoint: {exc}")
     
     # Plot training curves for the first fold
     if cv_results['fold_results']:

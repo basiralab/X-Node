@@ -263,6 +263,8 @@ def main():
                        help='Number of folds for cross-validation')
     parser.add_argument('--seed', type=int, default=42,
                        help='Random seed')
+    parser.add_argument('--fast', action='store_true',
+                        help='Enable fast mode: fewer epochs and skip heavy context computations')
     
     args = parser.parse_args()
     
@@ -276,7 +278,8 @@ def main():
     # Load graph and prepare data
     print(f"Loading graph from {args.graph_file}")
     G = load_graph(args.graph_file)
-    data = prepare_pytorch_geometric_data(G)
+    # Baselines do not need context; skip to speed up
+    data = prepare_pytorch_geometric_data(G, compute_context=False)
     
     print(f"Dataset: {data.x.size(0)} nodes, {data.edge_index.size(1)} edges")
     print(f"Features: {data.x.size(1)} dimensions")
@@ -289,6 +292,12 @@ def main():
     model_class = lambda **kwargs: get_baseline_model(args.model, **kwargs)
     
     # Perform cross-validation
+    # Fast mode adjustments
+    if args.fast:
+        print("Fast mode: setting epochs=5 and n_folds=2")
+        args.epochs = min(args.epochs, 5)
+        args.n_folds = min(args.n_folds, 2)
+
     print(f"\nStarting {args.n_folds}-fold cross-validation for {args.model.upper()}")
     cv_results = cross_validate(
         model_class, data, device, 

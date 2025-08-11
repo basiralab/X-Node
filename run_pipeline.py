@@ -49,12 +49,16 @@ def main():
                        help='Generate explanations')
     parser.add_argument('--api_key', type=str,
                        help='Grok API key for explanations')
+    parser.add_argument('--offline', action='store_true',
+                       help='Generate explanations without API (lightweight mode)')
     parser.add_argument('--output_dir', type=str, default='results',
                        help='Output directory')
     parser.add_argument('--epochs', type=int, default=200,
                        help='Number of training epochs')
     parser.add_argument('--n_folds', type=int, default=5,
                        help='Number of folds for cross-validation')
+    parser.add_argument('--fast', action='store_true',
+                        help='Enable fast mode for quick smoke tests')
     
     args = parser.parse_args()
     
@@ -80,28 +84,32 @@ def main():
     # Train baseline models
     if args.train_baselines:
         for model in args.models:
-            cmd = f"python models/train_baseline.py --model {model} --dataset {args.dataset} --graph_file {graph_file} --output_dir {args.output_dir} --epochs {args.epochs} --n_folds {args.n_folds}"
+            fast_flag = " --fast" if args.fast else ""
+            cmd = f"python models/train_baseline.py --model {model} --dataset {args.dataset} --graph_file {graph_file} --output_dir {args.output_dir} --epochs {args.epochs} --n_folds {args.n_folds}{fast_flag}"
             if not run_command(cmd, f"Training {model.upper()} baseline"):
                 print(f"Failed to train {model} baseline. Continuing...")
     
     # Train reasoner models
     if args.train_reasoners:
         for model in args.models:
-            cmd = f"python reasoners/train_reasoner.py --model {model} --dataset {args.dataset} --graph_file {graph_file} --output_dir {args.output_dir} --epochs {args.epochs} --n_folds {args.n_folds}"
+            fast_flag = " --fast" if args.fast else ""
+            cmd = f"python reasoners/train_reasoner.py --model {model} --dataset {args.dataset} --graph_file {graph_file} --output_dir {args.output_dir} --epochs {args.epochs} --n_folds {args.n_folds}{fast_flag}"
             if not run_command(cmd, f"Training {model.upper()} reasoner"):
                 print(f"Failed to train {model} reasoner. Continuing...")
     
     # Generate explanations
     if args.generate_explanations:
-        if not args.api_key:
-            print("API key required for explanation generation. Please provide --api_key.")
+        if not args.api_key and not args.offline:
+            print("API key required for explanation generation. Please provide --api_key or use --offline.")
             return
         
         for model in args.models:
             # Find the best model checkpoint (simplified - you might want to implement more sophisticated selection)
             model_results_file = f"{args.output_dir}/{model}_{args.dataset}_reasoner_results.json"
             if os.path.exists(model_results_file):
-                cmd = f"python reasoners/generate_explanations.py --model {model} --dataset {args.dataset} --graph_file {graph_file} --model_path {args.output_dir}/{model}_{args.dataset}_best_model.pth --output_dir {args.output_dir} --api_key {args.api_key}"
+                offline_flag = " --offline" if args.offline else ""
+                api_flag = f" --api_key {args.api_key}" if (args.api_key and not args.offline) else ""
+                cmd = f"python reasoners/generate_explanations.py --model {model} --dataset {args.dataset} --graph_file {graph_file} --model_path {args.output_dir}/{model}_{args.dataset}_best_model.pth --output_dir {args.output_dir}{api_flag}{offline_flag}"
                 if not run_command(cmd, f"Generating explanations for {model.upper()}"):
                     print(f"Failed to generate explanations for {model}. Continuing...")
             else:

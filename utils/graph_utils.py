@@ -44,8 +44,21 @@ def compute_topological_features(G):
     two_hop_agreement = np.array(two_hop_agreement)
     
     # Centrality measures
-    eigenvector_centrality = np.array(list(nx.eigenvector_centrality_numpy(G, weight='weight').values()))
+    num_nodes = G.number_of_nodes()
+    print(f"Computing centrality measures for {num_nodes} nodes...")
+    # Degree centrality is cheap
     degree_centrality = np.array(list(nx.degree_centrality(G).values()))
+    # Eigenvector centrality can be expensive for large graphs. Use a safe fallback.
+    eigenvector_centrality = None
+    try:
+        if num_nodes <= 3000:
+            eigenvector_centrality = np.array(list(nx.eigenvector_centrality_numpy(G, weight='weight').values()))
+        else:
+            print("Skipping exact eigenvector centrality for large graph; using zeros for speed.")
+            eigenvector_centrality = np.zeros(num_nodes)
+    except Exception as exc:
+        print(f"Warning: Eigenvector centrality computation failed ({exc}); using zeros.")
+        eigenvector_centrality = np.zeros(num_nodes)
     
     # Average edge weight
     avg_edge_weight = []
@@ -59,10 +72,14 @@ def compute_topological_features(G):
     
     # Betweenness centrality (optional, can be slow for large graphs)
     try:
-        betweenness_centrality = np.array(list(nx.betweenness_centrality(G, weight='weight').values()))
-    except:
-        print("Warning: Betweenness centrality computation failed, using zeros")
-        betweenness_centrality = np.zeros(len(G.nodes()))
+        if num_nodes <= 2000:
+            betweenness_centrality = np.array(list(nx.betweenness_centrality(G, weight='weight').values()))
+        else:
+            print("Skipping betweenness centrality for large graph; using zeros for speed.")
+            betweenness_centrality = np.zeros(num_nodes)
+    except Exception as exc:
+        print(f"Warning: Betweenness centrality computation failed ({exc}); using zeros")
+        betweenness_centrality = np.zeros(num_nodes)
     
     return {
         'degrees': degrees,
@@ -98,7 +115,7 @@ def create_context_vectors(topological_features):
     return torch.tensor(context_vectors, dtype=torch.float)
 
 
-def prepare_pytorch_geometric_data(G, topological_features=None):
+def prepare_pytorch_geometric_data(G, topological_features=None, compute_context: bool = True):
     """
     Convert NetworkX graph to PyTorch Geometric Data object.
     
@@ -119,23 +136,26 @@ def prepare_pytorch_geometric_data(G, topological_features=None):
     val_mask = np.array([G.nodes[n]['val'] for n in G.nodes()])
     test_mask = np.array([G.nodes[n]['test'] for n in G.nodes()])
     
-    # Compute topological features if not provided
-    if topological_features is None:
-        topological_features = compute_topological_features(G)
-    
-    # Create context vectors
-    context = create_context_vectors(topological_features)
+    context = None
+    if compute_context:
+        # Compute topological features if not provided
+        if topological_features is None:
+            topological_features = compute_topological_features(G)
+        # Create context vectors
+        context = create_context_vectors(topological_features)
     
     # Create PyTorch Geometric Data object
-    data = Data(
+    data_kwargs = dict(
         x=torch.tensor(x, dtype=torch.float),
         edge_index=torch.tensor(edge_index, dtype=torch.long),
         y=torch.tensor(y, dtype=torch.long),
         train_mask=torch.tensor(train_mask, dtype=torch.bool),
         val_mask=torch.tensor(val_mask, dtype=torch.bool),
         test_mask=torch.tensor(test_mask, dtype=torch.bool),
-        context=context
     )
+    if context is not None:
+        data_kwargs['context'] = context
+    data = Data(**data_kwargs)
     
     return data
 

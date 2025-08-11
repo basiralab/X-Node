@@ -309,21 +309,62 @@ def load_explanations(filename: str) -> Dict:
 
 def create_explanation_summary(explanations: Dict, output_file: str):
     """
-    Create a summary of all explanations.
+    Create a summary markdown file from the full explanations bundle produced by
+    reasoners/generate_explanations.py. Supports both the full bundle format and
+    a simple node->explanations mapping.
     
     Args:
-        explanations: Dictionary of explanations
+        explanations: Dictionary that may contain keys like 'global_explanation',
+                      'node_explanations', and 'metadata'. If a plain mapping is
+                      provided, it is treated as node_explanations directly.
         output_file: Output filename
     """
+    # Detect structure
+    if 'node_explanations' in explanations:
+        node_map = explanations.get('node_explanations', {})
+        global_text = explanations.get('global_explanation', '')
+        metadata = explanations.get('metadata', {})
+        model_name = explanations.get('model', '')
+        dataset_name = explanations.get('dataset', '')
+    else:
+        node_map = explanations
+        global_text = ''
+        metadata = {}
+        model_name = ''
+        dataset_name = ''
+
     with open(output_file, 'w') as f:
         f.write("# XNode Explanation Summary\n\n")
-        
-        for node_idx, node_explanations in explanations.items():
+
+        # Header information
+        if model_name or dataset_name:
+            f.write(f"Model: {model_name}  \n")
+            f.write(f"Dataset: {dataset_name}\n\n")
+
+        # Global section
+        if global_text:
+            f.write("## Global Explanation\n\n")
+            f.write(f"{global_text}\n\n")
+
+        # Metadata section
+        if metadata:
+            f.write("## Metadata\n\n")
+            for k, v in metadata.items():
+                f.write(f"- {k}: {v}\n")
+            f.write("\n")
+
+        # Node explanations
+        for node_idx, node_data in node_map.items():
             f.write(f"## Node {node_idx}\n\n")
-            
-            for explanation_type, explanation in node_explanations.items():
+            if isinstance(node_data, dict) and 'explanations' in node_data:
+                exp_dict = node_data['explanations']
+            else:
+                # Assume node_data itself is mapping explanation_type -> text
+                exp_dict = node_data if isinstance(node_data, dict) else {'explanation': str(node_data)}
+
+            for explanation_type, explanation_text in exp_dict.items():
                 f.write(f"### {explanation_type.replace('_', ' ').title()}\n\n")
-                f.write(f"{explanation}\n\n")
-                f.write("---\n\n")
-    
-    print(f"Created explanation summary: {output_file}") 
+                f.write(f"{explanation_text}\n\n")
+            f.write("---\n\n")
+
+    print(f"Created explanation summary: {output_file}")

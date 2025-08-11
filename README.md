@@ -88,6 +88,47 @@ Generate and save explanations:
 python reasoners/generate_explanations.py --model gcn --dataset organcmnist
 ```
 
+### Quick Demo (recommended)
+
+Run a fast end-to-end example with the bundled Organcmnist graph:
+
+```bash
+python quick_start.py
+```
+
+### Full Pipeline (train + explain)
+
+Fast smoke test for GCN on Organcmnist (uses offline explanations, no API key needed):
+
+```bash
+python run_pipeline.py \
+  --dataset organcmnist \
+  --models gcn \
+  --train_baselines \
+  --train_reasoners \
+  --generate_explanations \
+  --offline \
+  --fast \
+  --epochs 5 \
+  --n_folds 2
+```
+
+To use API-backed explanations instead of offline mode:
+
+```bash
+export GROQ_API_KEY="YOUR_API_KEY_HERE"
+python run_pipeline.py \
+  --dataset organcmnist \
+  --models gcn \
+  --train_baselines \
+  --train_reasoners \
+  --generate_explanations \
+  --api_key "$GROQ_API_KEY" \
+  --fast \
+  --epochs 5 \
+  --n_folds 2
+```
+
 ## Topological Features
 
 The system computes the following topological features for each node:
