@@ -25,14 +25,13 @@ def main():
     print(f"Found graph file: {graph_file}")
     
     # Run a simple baseline training
-    print("\nTraining GCN baseline model...")
-    cmd = f"python models/train_baseline.py --model gcn --dataset organcmnist --graph_file {graph_file} --output_dir results --epochs 50 --n_folds 2"
+    print("\nTraining GCN baseline model (fast mode)...")
+    cmd = f"python models/train_baseline.py --model gcn --dataset organcmnist --graph_file {graph_file} --output_dir results --epochs 10 --n_folds 2 --fast"
     
     try:
-        result = subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True)
-        print("✓ GCN baseline training completed!")
-        if result.stdout:
-            print("Output:", result.stdout[-500:])  # Last 500 chars
+        # Stream logs directly so user sees progress
+        result = subprocess.run(cmd, shell=True, check=True)
+        print("\n✓ GCN baseline training completed!")
     except subprocess.CalledProcessError as e:
         print(f"✗ Error training GCN baseline: {e}")
         if e.stderr:
@@ -40,14 +39,12 @@ def main():
         return
     
     # Run reasoner training
-    print("\nTraining GCN reasoner model...")
-    cmd = f"python reasoners/train_reasoner.py --model gcn --dataset organcmnist --graph_file {graph_file} --output_dir results --epochs 50 --n_folds 2"
+    print("\nTraining GCN reasoner model (fast mode)...")
+    cmd = f"python reasoners/train_reasoner.py --model gcn --dataset organcmnist --graph_file {graph_file} --output_dir results --epochs 10 --n_folds 2 --fast"
     
     try:
-        result = subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True)
-        print("✓ GCN reasoner training completed!")
-        if result.stdout:
-            print("Output:", result.stdout[-500:])  # Last 500 chars
+        result = subprocess.run(cmd, shell=True, check=True)
+        print("\n✓ GCN reasoner training completed!")
     except subprocess.CalledProcessError as e:
         print(f"✗ Error training GCN reasoner: {e}")
         if e.stderr:
