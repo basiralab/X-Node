@@ -122,6 +122,8 @@ Results are saved in the `results/` directory with:
 - Model checkpoints
 <img width="582" height="232" alt="image" src="https://github.com/user-attachments/assets/5bd391d7-7e26-4445-af35-96885dc4bac8" />
 
+<img width="618" height="475" alt="image" src="https://github.com/user-attachments/assets/bc032157-386c-4ea3-98d7-1fa818b6e848" />
+
 
 ## Configuration
 
