@@ -1,0 +1,562 @@
+{
+  "model": "gcn",
+  "dataset": "organcmnist",
+  "global_explanation": "Graph density=0.000, avg degree=6.98, avg clustering=0.18. Predicted class distribution={0: 727, 1: 515, 2: 147, 3: 1227, 4: 2435, 5: 1442, 6: 7062, 7: 2980, 8: 1934, 9: 1113, 10: 4001}. Topology indicates clusters with moderate agreement.",
+  "node_explanations": {
+    "15369": {
+      "prediction": 6,
+      "true_label": 6,
+      "confidence": 0.7538756728172302,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15369 predicted 6 (true 6, conf 0.75). Degree=5.00, Clustering=0.30, TwoHopAgree=0.98. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.54), feat_26(0.45), feat_19(0.30). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=5, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15370": {
+      "prediction": 4,
+      "true_label": 4,
+      "confidence": 0.48683544993400574,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15370 predicted 4 (true 4, conf 0.49). Degree=7.00, Clustering=0.19, TwoHopAgree=0.68. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_29(0.23), feat_2(0.22), feat_26(0.16). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=7, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15371": {
+      "prediction": 6,
+      "true_label": 6,
+      "confidence": 0.7489102482795715,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15371 predicted 6 (true 6, conf 0.75). Degree=8.00, Clustering=0.25, TwoHopAgree=0.97. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.49), feat_26(0.42), feat_31(0.29). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=8, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15372": {
+      "prediction": 6,
+      "true_label": 6,
+      "confidence": 0.6096571683883667,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15372 predicted 6 (true 6, conf 0.61). Degree=9.00, Clustering=0.25, TwoHopAgree=0.90. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.36), feat_29(0.30), feat_26(0.28). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=9, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15374": {
+      "prediction": 3,
+      "true_label": 3,
+      "confidence": 0.3974473178386688,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15374 predicted 3 (true 3, conf 0.40). Degree=13.00, Clustering=0.12, TwoHopAgree=0.71. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.38), feat_7(0.32), feat_22(0.28). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=13, avg edge weight=0.91. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15375": {
+      "prediction": 5,
+      "true_label": 5,
+      "confidence": 0.42898160219192505,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15375 predicted 5 (true 5, conf 0.43). Degree=5.00, Clustering=0.30, TwoHopAgree=0.74. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_2(0.22), feat_9(0.19), feat_26(0.17). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=5, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15377": {
+      "prediction": 7,
+      "true_label": 7,
+      "confidence": 0.7561320066452026,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15377 predicted 7 (true 7, conf 0.76). Degree=6.00, Clustering=0.13, TwoHopAgree=0.82. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_26(0.43), feat_9(0.42), feat_29(0.26). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=6, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15378": {
+      "prediction": 6,
+      "true_label": 6,
+      "confidence": 0.8110293745994568,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15378 predicted 6 (true 6, conf 0.81). Degree=5.00, Clustering=0.40, TwoHopAgree=0.96. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.43), feat_26(0.28), feat_19(0.26). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=5, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15379": {
+      "prediction": 6,
+      "true_label": 6,
+      "confidence": 0.9552492499351501,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15379 predicted 6 (true 6, conf 0.96). Degree=4.00, Clustering=0.33, TwoHopAgree=1.00. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.60), feat_26(0.45), feat_19(0.31). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=4, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15380": {
+      "prediction": 4,
+      "true_label": 4,
+      "confidence": 0.40358081459999084,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15380 predicted 4 (true 4, conf 0.40). Degree=7.00, Clustering=0.14, TwoHopAgree=0.73. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_26(0.29), feat_9(0.28), feat_29(0.26). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=7, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15381": {
+      "prediction": 6,
+      "true_label": 6,
+      "confidence": 0.9722315073013306,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15381 predicted 6 (true 6, conf 0.97). Degree=2.00, Clustering=0.00, TwoHopAgree=1.00. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.85), feat_26(0.83), feat_10(0.74). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=2, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15382": {
+      "prediction": 7,
+      "true_label": 7,
+      "confidence": 0.9645074605941772,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15382 predicted 7 (true 7, conf 0.96). Degree=12.00, Clustering=0.24, TwoHopAgree=0.90. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.40), feat_7(0.32), feat_29(0.32). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=12, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15383": {
+      "prediction": 3,
+      "true_label": 3,
+      "confidence": 0.5936510562896729,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15383 predicted 3 (true 3, conf 0.59). Degree=13.00, Clustering=0.13, TwoHopAgree=0.90. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.55), feat_31(0.39), feat_29(0.36). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=13, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15385": {
+      "prediction": 6,
+      "true_label": 6,
+      "confidence": 0.9876910448074341,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15385 predicted 6 (true 6, conf 0.99). Degree=8.00, Clustering=0.11, TwoHopAgree=0.96. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.60), feat_26(0.53), feat_31(0.37). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=8, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15387": {
+      "prediction": 7,
+      "true_label": 7,
+      "confidence": 0.9099211096763611,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15387 predicted 7 (true 7, conf 0.91). Degree=4.00, Clustering=0.33, TwoHopAgree=0.97. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.54), feat_26(0.42), feat_19(0.29). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=4, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15388": {
+      "prediction": 10,
+      "true_label": 10,
+      "confidence": 0.3139913082122803,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15388 predicted 10 (true 10, conf 0.31). Degree=4.00, Clustering=0.17, TwoHopAgree=0.38. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_2(0.36), feat_4(0.35), feat_27(0.29). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=4, avg edge weight=0.87. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15389": {
+      "prediction": 4,
+      "true_label": 4,
+      "confidence": 0.6372725963592529,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15389 predicted 4 (true 4, conf 0.64). Degree=3.00, Clustering=0.00, TwoHopAgree=0.92. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.72), feat_26(0.71), feat_10(0.58). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=3, avg edge weight=0.91. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15390": {
+      "prediction": 6,
+      "true_label": 6,
+      "confidence": 0.9485981464385986,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15390 predicted 6 (true 6, conf 0.95). Degree=8.00, Clustering=0.11, TwoHopAgree=0.75. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.36), feat_26(0.26), feat_29(0.26). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=8, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15392": {
+      "prediction": 6,
+      "true_label": 6,
+      "confidence": 0.8653508424758911,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15392 predicted 6 (true 6, conf 0.87). Degree=5.00, Clustering=0.10, TwoHopAgree=0.93. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_26(0.61), feat_9(0.60), feat_10(0.41). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=5, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15394": {
+      "prediction": 7,
+      "true_label": 7,
+      "confidence": 0.8715371489524841,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15394 predicted 7 (true 7, conf 0.87). Degree=2.00, Clustering=0.00, TwoHopAgree=0.96. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_26(0.79), feat_9(0.79), feat_10(0.67). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=2, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15395": {
+      "prediction": 3,
+      "true_label": 3,
+      "confidence": 0.3081655204296112,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15395 predicted 3 (true 3, conf 0.31). Degree=7.00, Clustering=0.24, TwoHopAgree=0.72. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_2(0.22), feat_9(0.20), feat_29(0.17). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=7, avg edge weight=0.90. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15396": {
+      "prediction": 4,
+      "true_label": 4,
+      "confidence": 0.4212370812892914,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15396 predicted 4 (true 4, conf 0.42). Degree=9.00, Clustering=0.08, TwoHopAgree=0.63. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.24), feat_29(0.23), feat_22(0.20). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=9, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15398": {
+      "prediction": 4,
+      "true_label": 4,
+      "confidence": 0.535308837890625,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15398 predicted 4 (true 4, conf 0.54). Degree=8.00, Clustering=0.21, TwoHopAgree=0.70. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_29(0.22), feat_2(0.17), feat_7(0.15). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=8, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15401": {
+      "prediction": 5,
+      "true_label": 5,
+      "confidence": 0.49968400597572327,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15401 predicted 5 (true 5, conf 0.50). Degree=4.00, Clustering=0.17, TwoHopAgree=0.97. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.64), feat_26(0.61), feat_6(0.42). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=4, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15403": {
+      "prediction": 2,
+      "true_label": 2,
+      "confidence": 0.2087976336479187,
+      "correct": true,
+      "explanations": {
+        "topological_explanation": "Node 15403 predicted 2 (true 2, conf 0.21). Degree=4.00, Clustering=0.17, TwoHopAgree=0.38. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_4(0.52), feat_25(0.50), feat_27(0.40). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=4, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15367": {
+      "prediction": 10,
+      "true_label": 9,
+      "confidence": 0.19781747460365295,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15367 predicted 10 (true 9, conf 0.20). Degree=8.00, Clustering=0.11, TwoHopAgree=0.12. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_25(0.71), feat_4(0.68), feat_27(0.67). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=8, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15368": {
+      "prediction": 0,
+      "true_label": 2,
+      "confidence": 0.18735411763191223,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15368 predicted 0 (true 2, conf 0.19). Degree=6.00, Clustering=0.07, TwoHopAgree=0.35. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_4(0.48), feat_25(0.45), feat_27(0.37). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=6, avg edge weight=0.95. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15373": {
+      "prediction": 10,
+      "true_label": 9,
+      "confidence": 0.1812608540058136,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15373 predicted 10 (true 9, conf 0.18). Degree=6.00, Clustering=0.40, TwoHopAgree=0.98. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.39), feat_19(0.28), feat_26(0.28). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=6, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15376": {
+      "prediction": 5,
+      "true_label": 0,
+      "confidence": 0.31623929738998413,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15376 predicted 5 (true 0, conf 0.32). Degree=5.00, Clustering=0.30, TwoHopAgree=0.22. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_25(0.74), feat_4(0.70), feat_27(0.69). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=5, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15384": {
+      "prediction": 7,
+      "true_label": 10,
+      "confidence": 0.392815500497818,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15384 predicted 7 (true 10, conf 0.39). Degree=7.00, Clustering=0.19, TwoHopAgree=0.67. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_2(0.22), feat_29(0.20), feat_9(0.18). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=7, avg edge weight=0.91. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15386": {
+      "prediction": 4,
+      "true_label": 5,
+      "confidence": 0.4075481593608856,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15386 predicted 4 (true 5, conf 0.41). Degree=9.00, Clustering=0.08, TwoHopAgree=0.26. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_25(0.44), feat_27(0.44), feat_13(0.42). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=9, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15391": {
+      "prediction": 7,
+      "true_label": 3,
+      "confidence": 0.5292789936065674,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15391 predicted 7 (true 3, conf 0.53). Degree=4.00, Clustering=0.17, TwoHopAgree=0.35. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_4(0.52), feat_25(0.45), feat_27(0.41). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=4, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15393": {
+      "prediction": 10,
+      "true_label": 3,
+      "confidence": 0.1921013444662094,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15393 predicted 10 (true 3, conf 0.19). Degree=3.00, Clustering=0.00, TwoHopAgree=0.30. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_2(0.46), feat_4(0.46), feat_25(0.36). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=3, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15397": {
+      "prediction": 6,
+      "true_label": 9,
+      "confidence": 0.6951935887336731,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15397 predicted 6 (true 9, conf 0.70). Degree=6.00, Clustering=0.33, TwoHopAgree=0.79. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_2(0.21), feat_29(0.20), feat_22(0.19). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=6, avg edge weight=0.95. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15399": {
+      "prediction": 2,
+      "true_label": 9,
+      "confidence": 0.3339073061943054,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15399 predicted 2 (true 9, conf 0.33). Degree=13.00, Clustering=0.19, TwoHopAgree=0.71. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_7(0.38), feat_22(0.29), feat_29(0.28). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=13, avg edge weight=0.96. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15400": {
+      "prediction": 5,
+      "true_label": 0,
+      "confidence": 0.4518319368362427,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15400 predicted 5 (true 0, conf 0.45). Degree=12.00, Clustering=0.23, TwoHopAgree=0.86. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.37), feat_7(0.32), feat_29(0.31). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=12, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15402": {
+      "prediction": 6,
+      "true_label": 9,
+      "confidence": 0.7913962602615356,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15402 predicted 6 (true 9, conf 0.79). Degree=11.00, Clustering=0.11, TwoHopAgree=0.86. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.49), feat_29(0.34), feat_31(0.30). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=11, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15405": {
+      "prediction": 10,
+      "true_label": 0,
+      "confidence": 0.38496294617652893,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15405 predicted 10 (true 0, conf 0.38). Degree=7.00, Clustering=0.19, TwoHopAgree=0.85. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.41), feat_26(0.37), feat_29(0.25). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=7, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15406": {
+      "prediction": 10,
+      "true_label": 5,
+      "confidence": 0.30596810579299927,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15406 predicted 10 (true 5, conf 0.31). Degree=11.00, Clustering=0.09, TwoHopAgree=0.08. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_25(0.70), feat_13(0.69), feat_4(0.63). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=11, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15408": {
+      "prediction": 0,
+      "true_label": 10,
+      "confidence": 0.21582113206386566,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15408 predicted 0 (true 10, conf 0.22). Degree=7.00, Clustering=0.24, TwoHopAgree=0.54. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_25(0.50), feat_4(0.44), feat_27(0.30). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=7, avg edge weight=0.97. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15410": {
+      "prediction": 7,
+      "true_label": 3,
+      "confidence": 0.39288094639778137,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15410 predicted 7 (true 3, conf 0.39). Degree=2.00, Clustering=0.00, TwoHopAgree=0.85. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.66), feat_26(0.65), feat_10(0.51). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=2, avg edge weight=0.90. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15416": {
+      "prediction": 10,
+      "true_label": 1,
+      "confidence": 0.18983159959316254,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15416 predicted 10 (true 1, conf 0.19). Degree=2.00, Clustering=0.00, TwoHopAgree=0.62. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_26(0.43), feat_2(0.43), feat_9(0.37). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=2, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15420": {
+      "prediction": 5,
+      "true_label": 4,
+      "confidence": 0.5265941023826599,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15420 predicted 5 (true 4, conf 0.53). Degree=18.00, Clustering=0.10, TwoHopAgree=0.65. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_7(0.55), feat_18(0.51), feat_9(0.50). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=18, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15422": {
+      "prediction": 4,
+      "true_label": 5,
+      "confidence": 0.5681045651435852,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15422 predicted 4 (true 5, conf 0.57). Degree=4.00, Clustering=0.17, TwoHopAgree=0.55. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_2(0.31), feat_4(0.26), feat_29(0.22). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=4, avg edge weight=0.91. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15424": {
+      "prediction": 3,
+      "true_label": 1,
+      "confidence": 0.3731779456138611,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15424 predicted 3 (true 1, conf 0.37). Degree=9.00, Clustering=0.25, TwoHopAgree=0.89. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.34), feat_29(0.31), feat_26(0.27). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=9, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15427": {
+      "prediction": 10,
+      "true_label": 4,
+      "confidence": 0.1588209569454193,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15427 predicted 10 (true 4, conf 0.16). Degree=5.00, Clustering=0.00, TwoHopAgree=0.26. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_2(0.38), feat_4(0.36), feat_27(0.32). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=5, avg edge weight=0.89. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15428": {
+      "prediction": 10,
+      "true_label": 0,
+      "confidence": 0.19475823640823364,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15428 predicted 10 (true 0, conf 0.19). Degree=5.00, Clustering=0.10, TwoHopAgree=0.49. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_2(0.33), feat_4(0.24), feat_29(0.21). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=5, avg edge weight=0.91. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15430": {
+      "prediction": 4,
+      "true_label": 2,
+      "confidence": 0.4259897768497467,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15430 predicted 4 (true 2, conf 0.43). Degree=7.00, Clustering=0.00, TwoHopAgree=0.11. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_4(0.59), feat_27(0.58), feat_25(0.57). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=7, avg edge weight=0.93. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15434": {
+      "prediction": 10,
+      "true_label": 4,
+      "confidence": 0.3205946087837219,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15434 predicted 10 (true 4, conf 0.32). Degree=10.00, Clustering=0.22, TwoHopAgree=0.22. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_25(0.72), feat_13(0.62), feat_4(0.60). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=10, avg edge weight=0.94. Local structure suggests class similarity via shared neighbors."
+      }
+    },
+    "15436": {
+      "prediction": 6,
+      "true_label": 9,
+      "confidence": 0.5539752840995789,
+      "correct": false,
+      "explanations": {
+        "topological_explanation": "Node 15436 predicted 6 (true 9, conf 0.55). Degree=7.00, Clustering=0.00, TwoHopAgree=0.79. These structural cues likely influenced the classifier via neighborhood similarity.",
+        "feature_importance_explanation": "Top contributing features: feat_9(0.49), feat_26(0.45), feat_29(0.31). These correlate with local density and agreement patterns.",
+        "neighborhood_explanation": "Neighborhood size=7, avg edge weight=0.92. Local structure suggests class similarity via shared neighbors."
+      }
+    }
+  },
+  "metadata": {
+    "num_nodes_explained": 50,
+    "total_nodes": 23583,
+    "num_classes": 11
+  }
+}
