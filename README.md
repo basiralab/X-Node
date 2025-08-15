@@ -177,10 +177,13 @@ export GROQ_API_KEY="your_api_key_here"
 
 If you use this code in your research, please cite:
 ```
-@article{xnode2024,
-  title={X-Node: Self-Explanation is all we need},
-  author={Prajit Sengupta, Islem Rekik},
-  journal={arXiv preprint},
-  year={2025}
+@misc{sengupta2025xnodeselfexplanationneed,
+      title={X-Node: Self-Explanation is All We Need}, 
+      author={Prajit Sengupta and Islem Rekik},
+      year={2025},
+      eprint={2508.10461},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2508.10461}, 
 }
 ``` 
