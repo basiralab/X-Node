@@ -7,6 +7,7 @@ XNode is a framework for explainable graph neural networks that combines topolog
 #### Accepted in GRAIL, MICCAI 2025 Conference (ORAL) 🎉
 
 Youtube Presentation: [https://www.youtube.com/watch?v=pdUGQr6dnt4&t=361s](https://www.youtube.com/watch?v=pdUGQr6dnt4&t=361s)
+
 Arxiv Link: [https://arxiv.org/abs/2508.10461](https://arxiv.org/abs/2508.10461)
 
 
